@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Django Saved List</title>
+</head>
+
+<body>
+
+<h2>Add List</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.name }}
+    <button type="submit">Add</button>
+</form>
+
+<hr>
+
+<h3>Saved Items</h3>
+
+<ul>
+    {% for item in items %}
+        <li>{{ item.name }}</li>
+    {% empty %}
+        <li>No items yet</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
