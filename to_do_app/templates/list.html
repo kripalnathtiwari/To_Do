@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Django Saved List</title>
-</head>
-
-<body>
-
-<h2>Add List</h2>
+<h2>{{ mylist.title }}</h2>
 
 <form method="POST">
     {% csrf_token %}
-    {{ form.name }}
+    {{ form.as_p }}
     <button type="submit">Add</button>
 </form>
 
 <hr>
 
-<h3>Saved Items</h3>
-
 <ul>
-    {% for item in items %}
-        <li>{{ item.name }}</li>
-    {% empty %}
-        <li>No items yet</li>
-    {% endfor %}
-</ul>
+{% for item in items %}
+    <li>
+        {{ item.name }}
 
-</body>
-</html>
+        <form action="{% url 'delete_item' item.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+
+    </li>
+{% empty %}
+    <li>No items yet</li>
+{% endfor %}
+</ul>

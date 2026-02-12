@@ -1,9 +1,7 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
-urlpatterns = [
-  
-    path('task/', views.add_task, name='add_task'),
-    
-    path('list/', views.list_page, name='list_page'),
 
+urlpatterns = [
+    path('list/<int:list_id>/', views.list_page, name='list_page'),
+    path('delete/<int:item_id>/', views.delete_item, name='delete_item'),
 ]
